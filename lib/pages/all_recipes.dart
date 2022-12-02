@@ -21,7 +21,7 @@ class AllRecipesScreen extends StatelessWidget {
               child: Icon(
                 CupertinoIcons.person_add_solid,
                 size: 27,
-                color: Colors.black87,
+                color: Color.fromARGB(255, 187, 35, 24),
               ),
             ),
             trailing: CupertinoButton(
@@ -32,7 +32,7 @@ class AllRecipesScreen extends StatelessWidget {
               child: Icon(
                 CupertinoIcons.plus_rectangle_fill,
                 size: 27,
-                color: Colors.black87,
+                color: Color.fromARGB(255, 187, 35, 24),
               ),
             ),
           ),
