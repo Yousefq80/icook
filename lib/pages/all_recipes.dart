@@ -16,7 +16,7 @@ class AllRecipesScreen extends StatelessWidget {
             leading: CupertinoButton(
               padding: const EdgeInsets.all(10),
               onPressed: () {
-                Navigator.pushNamed(context, '/');
+                // <----------- SIGN IN
               },
               child: Icon(
                 CupertinoIcons.person_add_solid,
