@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'pages/all_recipes.dart';
-import 'pages/new_recipe.dart';
+import 'pages/add_recipe.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +20,7 @@ class SplashScreen extends StatelessWidget {
         children: [
           Image.asset('assets/images/logo_icook.jpg'),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           const Text(
             'iCook',
@@ -29,15 +29,22 @@ class SplashScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: Colors.black87),
           ),
+          const Text(
+            '"Our slogan goes here..."',
+            style: TextStyle(
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
+                color: Colors.black87),
+          ),
         ],
       ),
       backgroundColor: Colors.white,
       nextScreen: const AllRecipesScreen(),
       splashIconSize: 250,
-      duration: 3500,
-      splashTransition: SplashTransition.sizeTransition,
-      pageTransitionType: PageTransitionType.fade,
-      animationDuration: Duration(milliseconds: 1500),
+      duration: 2500,
+      splashTransition: SplashTransition.fadeTransition,
+      pageTransitionType: PageTransitionType.bottomToTop,
+      animationDuration: Duration(milliseconds: 2000),
     );
   }
 }
