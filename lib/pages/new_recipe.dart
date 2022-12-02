@@ -9,7 +9,9 @@ class NewRecipeScreen extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         middle: Text('Add Recipe'),
       ),
-      child: CustomScrollView(),
+      child: CustomScrollView(
+        slivers: [],
+      ),
     );
   }
 }

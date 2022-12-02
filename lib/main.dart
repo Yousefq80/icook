@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'pages/all_recipes.dart';
-import 'pages/add_recipe.dart';
+import 'pages/new_recipe.dart';
 
 void main() {
   runApp(MyApp());
