@@ -66,6 +66,7 @@ class _NewRecipeState extends State<NewRecipe> {
                     CupertinoTextFormFieldRow(
                       controller: titleController,
                       autocorrect: false,
+                      textCapitalization: TextCapitalization.words,
                       textInputAction: TextInputAction.next,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.only(
@@ -104,6 +105,7 @@ class _NewRecipeState extends State<NewRecipe> {
                     CupertinoTextFormFieldRow(
                       controller: nameController,
                       autocorrect: false,
+                      textCapitalization: TextCapitalization.words,
                       textInputAction: TextInputAction.next,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -135,6 +137,7 @@ class _NewRecipeState extends State<NewRecipe> {
                     CupertinoTextFormFieldRow(
                       controller: categoryController,
                       autocorrect: false,
+                      textCapitalization: TextCapitalization.words,
                       textInputAction: TextInputAction.next,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -166,8 +169,9 @@ class _NewRecipeState extends State<NewRecipe> {
                     CupertinoTextFormFieldRow(
                       controller: descriptionController,
                       autocorrect: false,
+                      textCapitalization: TextCapitalization.sentences,
                       maxLines: 4,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.newline,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       placeholder: "Description",
@@ -198,8 +202,9 @@ class _NewRecipeState extends State<NewRecipe> {
                     CupertinoTextFormFieldRow(
                       controller: ingredientsController,
                       autocorrect: false,
+                      textCapitalization: TextCapitalization.words,
                       maxLines: 6,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.newline,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       placeholder: "Ingredients",
@@ -228,10 +233,11 @@ class _NewRecipeState extends State<NewRecipe> {
                     ),
                     SizedBox(height: 10),
                     CupertinoTextFormFieldRow(
-                      controller: descriptionController,
+                      controller: instructionsController,
                       autocorrect: false,
+                      textCapitalization: TextCapitalization.sentences,
                       maxLines: 5,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.newline,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       placeholder: "Instructions",
@@ -262,7 +268,7 @@ class _NewRecipeState extends State<NewRecipe> {
                     CupertinoTextFormFieldRow(
                       controller: imageController,
                       autocorrect: false,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       placeholder: "Image url",
