@@ -75,7 +75,7 @@ class RecipeListTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Recipe Name',
+                      'Recipe Title',
                       style: TextStyle(
                         fontSize: 22,
                         color: Colors.black87,

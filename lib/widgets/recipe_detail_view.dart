@@ -27,7 +27,7 @@ class RecipeDetail extends StatelessWidget {
                   children: [
                     SizedBox(height: 40),
                     Text(
-                      'Recipe Name',
+                      'Recipe Title',
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .navLargeTitleTextStyle,
