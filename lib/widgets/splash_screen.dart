@@ -1,14 +1,8 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter/material.dart';
 
-import 'pages/all_recipes_screen.dart';
-import 'pages/new_recipe_screen.dart';
-
-void main() {
-  runApp(MyApp());
-}
+import '../pages/all_recipes_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -45,22 +39,6 @@ class SplashScreen extends StatelessWidget {
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.bottomToTop,
       animationDuration: Duration(milliseconds: 2000),
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoApp(
-      title: 'iCook App',
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
-      routes: {
-        '/': (_) => AllRecipesScreen(),
-        '/new': (_) => NewRecipeScreen(),
-        '/splash': (_) => SplashScreen(),
-      },
     );
   }
 }

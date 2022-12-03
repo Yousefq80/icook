@@ -24,7 +24,12 @@ class NoRecipes extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, '/new');
             },
-            child: Text('+ Add a recipe'),
+            child: Text(
+              '+ Add a recipe',
+              style: TextStyle(
+                color: Color.fromARGB(255, 187, 35, 24),
+              ),
+            ),
           )
         ],
       ),

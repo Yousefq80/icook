@@ -68,7 +68,7 @@ class RecipeListTile extends StatelessWidget {
                       child: Text(
                         'Category',
                         style: TextStyle(
-                          color: Colors.blueGrey.shade400,
+                          color: Color.fromARGB(255, 187, 35, 24),
                           fontSize: 15,
                           fontStyle: FontStyle.italic,
                         ),

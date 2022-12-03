@@ -35,19 +35,23 @@
 //   }
 
 //   Future<void> addRecipe({
+//     required this.title,
 //     required this.name,
-//     required this.author,
 //     required this.category,
 //     this.description,
+//     required this.ingredients,
+//     required this.instructions,
 //     required this.image,
 //   }) async {
 //     await Client.dio.post("/recipes/",
 //         data: FormData.fromMap({
+//           "title": title,
 //           "name": name,
-//           "author": author,
 //           "category": category,
 //           "description": description,
-//           "image": await MultipartFile.fromFile(image.path),
+//           "ingredients": ingredients,
+//           "instructions": instructions,
+//           "image": image,
 //         }));
 
 //     getRecipes();
@@ -55,21 +59,25 @@
 
 //   Future<void> editRecipe({
 //     required Recipe recipe,
+//     required String title,
 //     required String name,
-//     required String author,
 //     required String category,
 //     String? description,
-//     required File image,
+//     required String ingredients,
+//     required String instructions,
+//     required String image,
 //   }) async {
 //     var client = Dio();
 
 //     await client.put("/recipes/${recipe.id}",
 //         data: FormData.fromMap({
+//           "title": title,
 //           "name": name,
-//           "author": author,
 //           "category": category,
 //           "description": description,
-//           "image": await MultipartFile.fromFile(image.path),
+//           "ingredients": ingredients,
+//           "instructions": instructions,
+//           "image": image,
 //         }));
 
 //     getRecipes();

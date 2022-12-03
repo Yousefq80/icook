@@ -14,23 +14,51 @@ class AllRecipesScreen extends StatelessWidget {
           CupertinoSliverNavigationBar(
             largeTitle: Text('All Recipes'),
             leading: CupertinoButton(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               onPressed: () {
                 // <----------- SIGN IN
               },
-              child: Icon(
-                CupertinoIcons.person_add_solid,
-                size: 28,
-                color: Color.fromARGB(255, 187, 35, 24),
+              child: Row(
+                children: [
+                  Icon(
+                    // <------LOGIN
+                    CupertinoIcons.person_crop_circle_fill,
+                    size: 28,
+                    color: Color.fromARGB(255, 187, 35, 24),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 187, 35, 24),
+                      ),
+                    ),
+                  ),
+                  // Icon(     // <----- LOGOUT
+                  //   CupertinoIcons.person_crop_circle_fill,
+                  //   size: 28,
+                  //   color: Color.fromARGB(255, 187, 35, 24),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 5),
+                  //   child: Text(
+                  //     "logout",
+                  //     style: TextStyle(
+                  //       color: Color.fromARGB(255, 187, 35, 24),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
               ),
             ),
             trailing: CupertinoButton(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               onPressed: () {
                 Navigator.pushNamed(context, '/new');
               },
               child: Icon(
-                CupertinoIcons.plus_rectangle_fill,
+                CupertinoIcons.plus,
                 size: 27,
                 color: Color.fromARGB(255, 187, 35, 24),
               ),
