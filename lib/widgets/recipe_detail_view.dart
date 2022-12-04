@@ -53,7 +53,7 @@ class RecipeDetail extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     Text(
-                      'For over 200 years, we have been helping learners develop the skills and knowledge needed for their success. We are honored to be recognized as America’s MOST trusted company in 2022 by Newsweek. ',
+                      "For over 200 years, we have been helping learners develop the skills and knowledge needed for their success. We are honored to be recognized as America's MOST trusted company in 2022 by Newsweek. ",
                       style: TextStyle(
                         color: Colors.blueGrey,
                         fontSize: 20,
@@ -75,7 +75,7 @@ class RecipeDetail extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 187, 35, 24),
                         child: Text('Go back'),
                       ),
                     ),

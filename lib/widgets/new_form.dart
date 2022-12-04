@@ -96,7 +96,9 @@ class _NewRecipeState extends State<NewRecipe> {
                         }
                       },
                       onChanged: (value) {
-                        title = value;
+                        setState(() {
+                          title = value;
+                        });
                       },
                       onSaved: (value) {
                         title = value!;
@@ -170,7 +172,9 @@ class _NewRecipeState extends State<NewRecipe> {
                       controller: descriptionController,
                       autocorrect: false,
                       textCapitalization: TextCapitalization.sentences,
-                      maxLines: 4,
+                      maxLines: null,
+                      minLines: null,
+                      expands: true,
                       textInputAction: TextInputAction.newline,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -203,7 +207,9 @@ class _NewRecipeState extends State<NewRecipe> {
                       controller: ingredientsController,
                       autocorrect: false,
                       textCapitalization: TextCapitalization.words,
-                      maxLines: 6,
+                      maxLines: null,
+                      minLines: null,
+                      expands: true,
                       textInputAction: TextInputAction.newline,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -236,7 +242,7 @@ class _NewRecipeState extends State<NewRecipe> {
                       controller: instructionsController,
                       autocorrect: false,
                       textCapitalization: TextCapitalization.sentences,
-                      maxLines: 5,
+                      maxLines: 10,
                       textInputAction: TextInputAction.newline,
                       cursorColor: Color.fromARGB(255, 187, 35, 24),
                       padding: EdgeInsets.symmetric(horizontal: 16),
