@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:icook/widgets/new_form.dart';
 import 'package:icook/widgets/recipe_detail_view.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../models/category_model.dart';
+import '../models/recipes_model.dart';
+
 class RecipeListTile extends StatelessWidget {
-  const RecipeListTile({super.key});
+  final Recipe recipe;
+  const RecipeListTile({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +71,7 @@ class RecipeListTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 2),
                       child: Text(
-                        'Category',
+                        recipe.title,
                         style: TextStyle(
                           color: Color.fromARGB(255, 187, 35, 24),
                           fontSize: 15,

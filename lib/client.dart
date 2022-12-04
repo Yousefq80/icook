@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
 class Client {
-  static final Dio dio =
-      Dio(BaseOptions(baseUrl: "https://coded-pets-api-auth.herokuapp.com"));
+  static final Dio dio = Dio(BaseOptions(baseUrl: "http://127.0.0.1:8000"));
 }

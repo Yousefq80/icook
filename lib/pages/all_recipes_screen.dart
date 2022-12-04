@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:icook/models/category_model.dart';
+import 'package:icook/providers/category_provider.dart';
+import 'package:icook/widgets/new_form.dart';
+import 'package:provider/provider.dart';
+import '../providers/recipes_provider.dart';
 import '../widgets/no_recipes.dart';
 import '../widgets/recipe_list_tile.dart';
 
@@ -164,13 +169,17 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                RecipeListTile(),
-                RecipeListTile(),
-                RecipeListTile(),
-                RecipeListTile(),
-                RecipeListTile(),
-                RecipeListTile(),
-                RecipeListTile(),
+                if (context.watch<CategoryProvider>().isLoading)
+                  LinearProgressIndicator()
+                else
+                  ...context
+                      .watch<RecipesProvider>()
+                      .recipes
+                      .map((recipe) => RecipeListTile(
+                            recipe: recipe,
+                          ))
+                      .toList(),
+
                 NoRecipes(),
                 // for (var i = 0; i < 100; i++) Text('Recipe $i'),
               ],
@@ -180,4 +189,9 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
       ),
     );
   }
+}
+
+void main() {
+  var cool_nums = [8, 9];
+  var nums = [1, 2, ...cool_nums, 3, 4, 5];
 }
