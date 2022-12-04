@@ -1,7 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:icook/providers/category_provider.dart';
+import 'package:icook/providers/recipes_provider.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/all_recipes_screen.dart';
 import 'pages/new_recipe_screen.dart';
@@ -16,6 +19,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
+      nextScreen: const AllRecipesScreen(),
       splash: Column(
         children: [
           Image.asset('assets/images/logo_icook.jpg'),
@@ -38,9 +42,8 @@ class SplashScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Colors.white,
-      nextScreen: const AllRecipesScreen(),
       splashIconSize: 250,
+      backgroundColor: Colors.white,
       duration: 2500,
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.bottomToTop,
@@ -52,15 +55,21 @@ class SplashScreen extends StatelessWidget {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      title: 'iCook App',
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
-      routes: {
-        '/': (_) => AllRecipesScreen(),
-        '/new': (_) => NewRecipeScreen(),
-        '/splash': (_) => SplashScreen(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CategoryProvider()),
+        ChangeNotifierProvider(create: (context) => RecipesProvider()),
+      ],
+      child: CupertinoApp(
+        title: 'iCook App',
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/splash',
+        routes: {
+          '/': (_) => AllRecipesScreen(),
+          '/new': (_) => NewRecipeScreen(),
+          '/splash': (_) => SplashScreen(),
+        },
+      ),
     );
   }
 }
