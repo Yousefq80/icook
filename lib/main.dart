@@ -5,7 +5,7 @@ import 'SignIn.dart';
 import 'SignUp.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 final router = GoRouter(routes: [
@@ -23,9 +23,8 @@ class MyApp extends StatelessWidget {
   const MyApp();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-      title: Text("Welcome"),
-    ));
+    return MaterialApp.router(
+      routerConfig: router,
+    );
   }
 }

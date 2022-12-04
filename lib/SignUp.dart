@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // ignore: must_be_immutable
 class SignUp extends StatelessWidget {
@@ -59,6 +60,13 @@ class SignUp extends StatelessWidget {
               },
             ),
             // to insert button
+            Spacer(),
+            TextButton(
+              onPressed: () {
+                context.go('/SignIn');
+              },
+              child: Text("if you have an acount sign in "),
+            ),
             Spacer(),
             ElevatedButton(
               onPressed: () async {

@@ -16,49 +16,47 @@ class SignIn extends StatelessWidget {
         title: Text("Sign-In"),
       ),
       body: SafeArea(
-        child: Form(
-          key: formKey,
-          child: Column(children:[
-            TextFormField(
-              controller: usernameController,
-              decoration: InputDecoration(hintText: "Username"),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Required field";
-                }
+          child: Form(
+        key: formKey,
+        child: Column(children: [
+          TextFormField(
+            controller: usernameController,
+            decoration: InputDecoration(hintText: "Username"),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Required field";
+              }
 
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(hintText: "Password"),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Required field";
-                }
+              return null;
+            },
+          ),
+          TextFormField(
+            controller: passwordController,
+            obscureText: true,
+            decoration: InputDecoration(hintText: "Password"),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Required field";
+              }
 
-                return null;
-              },
-            ),
-          ]),
-          // to insert button
+              return null;
+            },
+          ),
           Spacer(),
-            ElevatedButton(
-              onPressed: () async {
-                if (formKey.currentState!.validate()) {
-                  print("vlid");
-                } else {
-                  print("form not valid");
-                }
-              },
-              child: Text("Signup"),
-            ),
-          ])
-      ),
-        // ignore: dead_code
-        );
-      
+          ElevatedButton(
+            onPressed: () async {
+              if (formKey.currentState!.validate()) {
+                print("vlid");
+              } else {
+                print("form not valid");
+              }
+            },
+            child: Text("Signup"),
+          ),
+        ]),
+        // to insert button
+      )),
+      // ignore: dead_code
+    );
   }
 }
