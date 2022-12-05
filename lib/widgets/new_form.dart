@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/recipes_provider.dart';
@@ -307,7 +308,7 @@ class _NewRecipeState extends State<NewRecipe> {
                       children: [
                         CupertinoButton(
                           color: Colors.green,
-                          onPressed: () async {
+                          onPressed: () {
                             // if (formKey.currentState!.validate()) {
                             //   await context.read<RecipesProvider>().addRecipe(
                             //         title: titleController.text,
@@ -319,15 +320,16 @@ class _NewRecipeState extends State<NewRecipe> {
                             //         image: imageController.text,
                             //       );
                             // }
-                            Navigator.pushNamed(context, '/');
+                            context.go("/list");
                           },
+                          // },
                           child: Text('Add'),
                         ),
                         SizedBox(width: 25),
                         CupertinoButton(
                           color: Color.fromARGB(255, 187, 35, 24),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/');
+                            context.go("/list");
                           },
                           child: Text('Cancel'),
                         ),

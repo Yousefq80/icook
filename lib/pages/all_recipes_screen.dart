@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:icook/models/category_model.dart';
-import 'package:icook/providers/category_provider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:icook/widgets/new_form.dart';
 import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
 import '../providers/recipes_provider.dart';
 import '../widgets/no_recipes.dart';
 import '../widgets/recipe_list_tile.dart';
@@ -37,6 +37,24 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                     builder: ((context) {
                       return CupertinoAlertDialog(
                           title: Text('Sign In'),
+                          content: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4),
+                                child: Text("Don't have an account?"),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: TextButton(
+                                  child: Text("Register"),
+                                  onPressed: () {
+                                    context.pop();
+                                    context.go("/signup");
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                           actions: [
                             CupertinoTextFormFieldRow(
                               controller: usernameController,
@@ -120,44 +138,49 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                           ]);
                     })); // <----------- SIGN IN
               },
-              child: Row(
-                children: [
-                  Icon(
-                    // <------LOGIN
-                    CupertinoIcons.person_crop_circle_fill,
-                    size: 28,
-                    color: Color.fromARGB(255, 187, 35, 24),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 187, 35, 24),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Row(
+                  children: [
+                    Icon(
+                      // <------LOGIN
+                      CupertinoIcons.person_crop_circle_fill,
+                      size: 28,
+                      color: Color.fromARGB(255, 187, 35, 24),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 187, 35, 24),
+                        ),
                       ),
                     ),
-                  ),
-                  // Icon(     // <----- LOGOUT
-                  //   CupertinoIcons.person_crop_circle_fill,
-                  //   size: 28,
-                  //   color: Color.fromARGB(255, 187, 35, 24),
-                  // ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(left: 5),
-                  //   child: Text(
-                  //     "logout",
-                  //     style: TextStyle(
-                  //       color: Color.fromARGB(255, 187, 35, 24),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
+                    // Icon(     // <----- LOGOUT
+                    //   CupertinoIcons.person_crop_circle_fill,
+                    //   size: 28,
+                    //   color: Color.fromARGB(255, 187, 35, 24),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 5),
+                    //   child: Text(
+                    //     "logout",
+                    //     style: TextStyle(
+                    //       color: Color.fromARGB(255, 187, 35, 24),
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
             ),
             trailing: CupertinoButton(
               padding: const EdgeInsets.all(5),
               onPressed: () {
-                Navigator.pushNamed(context, '/new');
+                context.read<AuthProvider>().signup(
+                    username: usernameController.text,
+                    password: passwordController.text);
               },
               child: Icon(
                 CupertinoIcons.plus,
@@ -169,7 +192,7 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                if (context.watch<CategoryProvider>().isLoading)
+                if (context.watch<RecipesProvider>().isLoading)
                   LinearProgressIndicator()
                 else
                   ...context
@@ -181,6 +204,7 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                       .toList(),
 
                 NoRecipes(),
+
                 // for (var i = 0; i < 100; i++) Text('Recipe $i'),
               ],
             ),
