@@ -23,15 +23,15 @@ class RecipesProvider extends ChangeNotifier {
     // await a future (delay: 1 second)
     // await Future.delayed(Duration(seconds: 1));
 
-    // var response = await Client.dio.get("/api/recipes/");
+    var response = await Client.dio.get("/api/recipes/");
 
-    // var body = response.data as List;
+    var body = response.data as List;
 
-    // recipes = body
-    //     .map(
-    //       (json) => Recipe.fromJson(json),
-    //     )
-    //     .toList();
+    recipes = body
+        .map(
+          (json) => Recipe.fromJson(json),
+        )
+        .toList();
 
     isLoading = false;
     notifyListeners();
@@ -46,7 +46,7 @@ class RecipesProvider extends ChangeNotifier {
   //   required this.instructions,
   //   required this.image,
   // }) async {
-  //   await Client.dio.post("/recipes/",
+  //   await Client.dio.post("/api/recipes/",
   //       data: FormData.fromMap({
   //         "title": title,
   //         "name": name,

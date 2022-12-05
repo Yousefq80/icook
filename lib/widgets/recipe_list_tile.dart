@@ -57,8 +57,7 @@ class RecipeListTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(
-                          'https://images.everydayhealth.com/images/diet-nutrition/34da4c4e-82c3-47d7-953d-121945eada1e00-giveitup-unhealthyfood.jpg?w=1110'),
+                      image: NetworkImage(recipe.image),
                     ),
                   ),
                 ),
@@ -80,7 +79,7 @@ class RecipeListTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Recipe Title',
+                      recipe.title,
                       style: TextStyle(
                         fontSize: 22,
                         color: Colors.black87,
@@ -88,7 +87,7 @@ class RecipeListTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'By: Author Name',
+                      recipe.user,
                       style: TextStyle(
                         color: Colors.blueGrey.shade300,
                         fontSize: 12,
@@ -97,7 +96,7 @@ class RecipeListTile extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      'For over 200 years, we have been helping learners develop the skills and knowledge needed for their success. We are honored to be recognized as America’s MOST trusted company in 2022 by Newsweek. ',
+                      recipe.description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

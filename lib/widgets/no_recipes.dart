@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class NoRecipes extends StatelessWidget {
   const NoRecipes({super.key});
@@ -22,7 +23,7 @@ class NoRecipes extends StatelessWidget {
           ),
           CupertinoButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/new');
+              context.go("/add");
             },
             child: Text(
               '+ Add a recipe',
