@@ -19,36 +19,61 @@ class AuthProvider extends ChangeNotifier {
         "password": password,
       });
 
-      var token = response.data["token"];
+      var token = response.data["access"];
       Client.dio.options.headers["Authorization"] = "Bearer $token";
 
       username = username;
-
+      notifyListeners();
       var pref = await SharedPreferences.getInstance();
       await pref.setString("token", token);
 
       return true;
     } on DioError catch (e) {
       // e = exception (error)
-      print(e.response!.statusCode);
-      print(e.response!.data);
+      print(e);
+      // print(e.response!.statusCode);
+      // print(e.response!.data);
     } catch (e) {
       print("unknown error");
+      print('c: $e');
     }
-
+    notifyListeners();
     return false;
   }
 
   Future<bool> hasToken() async {
     var pref = await SharedPreferences.getInstance();
-    var token = null; //pref.getString("token");
+    var token = pref.getString("token");
 
     if (token != null && token.isNotEmpty && !JwtDecoder.isExpired(token)) {
       var tokenMap = JwtDecoder.decode(token);
       username = tokenMap['username'];
+      notifyListeners();
       return true;
     }
 
+    return false;
+  }
+
+  Future<bool> login(
+      {required String username, required String password}) async {
+    String token;
+    try {
+      Response response = await Client.dio.post('api/login/', data: {
+        "username": username,
+        "password": password,
+      });
+      token = response.data["access"];
+      Client.dio.options.headers["Authorization"] = "Bearer $token";
+      var ref = await SharedPreferences.getInstance();
+      ref.setString("token", token);
+      username = username;
+      notifyListeners();
+      return true;
+    } on DioError catch (e) {
+      print(e);
+    }
+    notifyListeners();
     return false;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:icook/pages/new_recipe_screen.dart';
 import 'package:icook/widgets/new_form.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
@@ -28,32 +29,55 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
       child: CustomScrollView(
         slivers: [
           CupertinoSliverNavigationBar(
-            largeTitle: Text('All Recipes'),
+            largeTitle: Row(
+              children: [
+                Text('All Recipes'),
+                CupertinoButton(
+                  padding: const EdgeInsets.all(5),
+                  onPressed: () {
+                    // context.read<AuthProvider>().signup(
+                    //     username: usernameController.text,
+                    //     password: passwordController.text);
+
+                    context.go('/add');
+                  },
+                  child: Icon(
+                    CupertinoIcons.search,
+                    size: 27,
+                    color: Color.fromARGB(255, 187, 35, 24),
+                  ),
+                ),
+              ],
+            ),
             leading: CupertinoButton(
               padding: const EdgeInsets.all(5),
               onPressed: () {
+                //*   if(context.)
+
                 showCupertinoDialog(
                     context: context,
                     builder: ((context) {
                       return CupertinoAlertDialog(
                           title: Text('Sign In'),
-                          content: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 4),
-                                child: Text("Don't have an account?"),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 4),
-                                child: TextButton(
-                                  child: Text("Register"),
-                                  onPressed: () {
-                                    context.pop();
-                                    context.go("/signup");
-                                  },
+                          content: Form(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Text("Don't have an account?"),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 4),
+                                  child: TextButton(
+                                    child: Text("Register"),
+                                    onPressed: () {
+                                      context.pop();
+                                      context.push("/signup");
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           actions: [
                             CupertinoTextFormFieldRow(
@@ -124,7 +148,11 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                             ),
                             CupertinoDialogAction(
                               child: Text('Sign in'),
-                              onPressed: () {
+                              onPressed: () async {
+                                context.read<AuthProvider>().login(
+                                    //!  To Work on
+                                    username: usernameController.text,
+                                    password: passwordController.text);
                                 Navigator.of(context).pop();
                               },
                             ),
@@ -138,49 +166,57 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                           ]);
                     })); // <----------- SIGN IN
               },
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Row(
-                  children: [
-                    Icon(
-                      // <------LOGIN
-                      CupertinoIcons.person_crop_circle_fill,
-                      size: 28,
-                      color: Color.fromARGB(255, 187, 35, 24),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
+              child: context.watch<AuthProvider>().username == null
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: Row(
+                        children: [
+                          Icon(
+                            // <------LOGIN
+                            CupertinoIcons.person_crop_circle_fill,
+                            size: 28,
+                            color: Color.fromARGB(255, 187, 35, 24),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 1),
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 187, 35, 24),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : Row(
+                      children: [
+                        Icon(
+                          // <----- LOGOUT
+                          CupertinoIcons.person_crop_circle_fill,
+                          size: 28,
                           color: Color.fromARGB(255, 187, 35, 24),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            "logout",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 187, 35, 24),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    // Icon(     // <----- LOGOUT
-                    //   CupertinoIcons.person_crop_circle_fill,
-                    //   size: 28,
-                    //   color: Color.fromARGB(255, 187, 35, 24),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 5),
-                    //   child: Text(
-                    //     "logout",
-                    //     style: TextStyle(
-                    //       color: Color.fromARGB(255, 187, 35, 24),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-              ),
             ),
             trailing: CupertinoButton(
               padding: const EdgeInsets.all(5),
               onPressed: () {
-                context.read<AuthProvider>().signup(
-                    username: usernameController.text,
-                    password: passwordController.text);
+                // context.read<AuthProvider>().signup(
+                //     username: usernameController.text,
+                //     password: passwordController.text);
+
+                context.go('/add');
               },
               child: Icon(
                 CupertinoIcons.plus,
@@ -213,9 +249,4 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
       ),
     );
   }
-}
-
-void main() {
-  var cool_nums = [8, 9];
-  var nums = [1, 2, ...cool_nums, 3, 4, 5];
 }
