@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:icook/pages/new_recipe_screen.dart';
+import 'package:icook/pages/signin.dart';
 import 'package:icook/pages/signup_page.dart';
 import 'package:icook/providers/auth_provider.dart';
 import 'package:icook/providers/recipes_provider.dart';
@@ -11,6 +12,10 @@ import 'pages/all_recipes_screen.dart';
 import 'pages/new_recipe_screen.dart';
 
 void main() async {
+  // if (Platform.isAndroid) {
+  //   Client.dio.options = BaseOptions(baseUrl: "http://127.0.0.1:8000");
+  // }
+
   WidgetsFlutterBinding.ensureInitialized();
   var authProvider = AuthProvider();
   var isAuth = await authProvider.hasToken();
@@ -19,7 +24,6 @@ void main() async {
 
   runApp(MyApp(
     authProvider: authProvider,
-    initialRoute: "/list", // isAuth ? "/list" : "/",
   ));
 }
 
@@ -62,41 +66,46 @@ void main() async {
 //   }
 // }
 
+final router = GoRouter(
+  initialLocation: "/list",
+  routes: [
+    GoRoute(
+      path: '/signup',
+      builder: (context, state) => SignUpPage(),
+    ),
+    GoRoute(
+      path: '/signin',
+      builder: (context, state) => SignInPage(),
+    ),
+    GoRoute(
+      path: '/splash',
+      builder: (context, state) => SplashScreen(),
+    ),
+    GoRoute(
+      path: '/list',
+      builder: (context, state) => AllRecipesScreen(),
+    ),
+    GoRoute(
+      path: '/add',
+      builder: (context, state) => NewRecipeScreen(),
+    ),
+    // GoRoute(
+    //   path: '/edit',
+    //   builder: (context, state) => EditRecipeScreen(
+    //     pet: state.extra as Recipe,
+    //   ),
+    // ),
+  ],
+);
+
 class MyApp extends StatelessWidget {
-  final String initialRoute;
   final AuthProvider authProvider;
   MyApp({
     required this.authProvider,
-    required this.initialRoute,
   });
 
   @override
   Widget build(BuildContext context) {
-    final router = GoRouter(initialLocation: initialRoute, routes: [
-      GoRoute(
-        path: '/signup',
-        builder: (context, state) => SignupPage(),
-      ),
-      GoRoute(
-        path: '/splash',
-        builder: (context, state) => SplashScreen(),
-      ),
-      GoRoute(
-        path: '/list',
-        builder: (context, state) => AllRecipesScreen(),
-      ),
-      GoRoute(
-        path: '/add',
-        builder: (context, state) => NewRecipeScreen(),
-      ),
-      // GoRoute(
-      //   path: '/edit',
-      //   builder: (context, state) => EditRecipeScreen(
-      //     pet: state.extra as Recipe,
-      //   ),
-      // ),
-    ]);
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => RecipesProvider()),
