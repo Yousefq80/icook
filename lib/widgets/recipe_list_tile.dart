@@ -8,8 +8,8 @@ import '../models/category_model.dart';
 import '../models/recipes_model.dart';
 
 class RecipeListTile extends StatelessWidget {
-  final Recipe recipe;
   const RecipeListTile({super.key, required this.recipe});
+  final Recipe recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class RecipeListTile extends StatelessWidget {
               SlidableAction(
                 label: 'Edit',
                 onPressed: ((context) {
-                  //    <---------  EDIT RECIPE
+                  //*    <---------  EDIT RECIPE
                 }),
                 backgroundColor: Colors.blue,
                 icon: Icons.edit,
@@ -35,7 +35,7 @@ class RecipeListTile extends StatelessWidget {
               SlidableAction(
                 label: 'Delete',
                 onPressed: ((context) {
-                  //    <---------  DELETE RECIPE
+                  //*    <---------  DELETE RECIPE
                 }),
                 backgroundColor: Colors.red,
                 icon: Icons.delete,
@@ -70,7 +70,7 @@ class RecipeListTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 2),
                       child: Text(
-                        recipe.title,
+                        recipe.category,
                         style: TextStyle(
                           color: Color.fromARGB(255, 187, 35, 24),
                           fontSize: 15,

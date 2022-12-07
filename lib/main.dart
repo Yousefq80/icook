@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:icook/pages/new_recipe_screen.dart';
+import 'package:icook/pages/search_page.dart';
 import 'package:icook/pages/signin.dart';
 import 'package:icook/pages/signup_page.dart';
 import 'package:icook/providers/auth_provider.dart';
@@ -89,6 +90,10 @@ final router = GoRouter(
       path: '/add',
       builder: (context, state) => NewRecipeScreen(),
     ),
+    GoRoute(
+      path: '/search',
+      builder: (context, state) => SearchPage(),
+    ),
     // GoRoute(
     //   path: '/edit',
     //   builder: (context, state) => EditRecipeScreen(
@@ -115,6 +120,7 @@ class MyApp extends StatelessWidget {
         title: 'iCook App',
         debugShowCheckedModeBanner: false,
         routerConfig: router,
+        color: Color.fromARGB(255, 187, 35, 24),
       ),
     );
 

@@ -33,7 +33,7 @@ class SplashScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.white,
-      nextScreen: AllRecipesScreen(), // context.go("/list"),
+      nextScreen: AllRecipesScreen(), // context.go("/list")
       splashIconSize: 250,
       duration: 2500,
       splashTransition: SplashTransition.fadeTransition,
