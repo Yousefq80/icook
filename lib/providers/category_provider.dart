@@ -15,24 +15,28 @@ class CategoryProvider extends ChangeNotifier {
   }
 
   Future<void> getCategory() async {
-    isLoading = true;
-    notifyListeners();
+    try {
+      isLoading = true;
+      notifyListeners();
 
-    category.clear();
+      category.clear();
 
-    // await a future (delay: 1 second)
-    // await Future.delayed(Duration(seconds: 1));
+      // await a future (delay: 1 second)
+      // await Future.delayed(Duration(seconds: 1));
 
-    var response = await Client.dio.get("/api/categories/");
-    var body = response.data as List;
+      var response = await Client.dio.get("/api/categories/");
+      var body = response.data as List;
 
-    category = body
-        .map(
-          (json) => Category.fromJson(json),
-        )
-        .toList();
+      category = body
+          .map(
+            (json) => Category.fromJson(json),
+          )
+          .toList();
 
-    isLoading = false;
-    notifyListeners();
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -15,26 +15,30 @@ class RecipesProvider extends ChangeNotifier {
   }
 
   Future<void> getRecipes() async {
-    isLoading = true;
-    notifyListeners();
+    try {
+      isLoading = true;
+      notifyListeners();
 
-    recipes.clear();
+      recipes.clear();
 
-    // await a future (delay: 1 second)
-    // await Future.delayed(Duration(seconds: 1));
+      // await a future (delay: 1 second)
+      // await Future.delayed(Duration(seconds: 1));
 
-    var response = await Client.dio.get("/api/recipes/");
+      var response = await Client.dio.get("/api/recipes/");
 
-    var body = response.data as List;
+      var body = response.data as List;
 
-    recipes = body
-        .map(
-          (json) => Recipe.fromJson(json),
-        )
-        .toList();
+      recipes = body
+          .map(
+            (json) => Recipe.fromJson(json),
+          )
+          .toList();
 
-    isLoading = false;
-    notifyListeners();
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
   }
 
   // Future<void> addRecipe({
