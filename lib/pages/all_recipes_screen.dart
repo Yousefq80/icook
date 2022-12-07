@@ -39,7 +39,7 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                     //     username: usernameController.text,
                     //     password: passwordController.text);
 
-                    context.go('/add');
+                    context.push('/search');
                   },
                   child: Icon(
                     CupertinoIcons.search,

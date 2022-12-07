@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -20,7 +22,8 @@ class AuthProvider extends ChangeNotifier {
       });
 
       var token = response.data["access"];
-      Client.dio.options.headers["Authorization"] = "Bearer $token";
+      Client.dio.options.headers[HttpHeaders.authorizationHeader] =
+          "Bearer $token";
 
       username = username;
       notifyListeners();
@@ -64,7 +67,9 @@ class AuthProvider extends ChangeNotifier {
         "password": password,
       });
       token = response.data["access"];
-      Client.dio.options.headers["Authorization"] = "Bearer $token";
+      Client.dio.options.headers[HttpHeaders.authorizationHeader] =
+          "Bearer $token";
+
       var ref = await SharedPreferences.getInstance();
       ref.setString("token", token);
       username = username;
