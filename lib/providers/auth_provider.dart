@@ -22,11 +22,11 @@ class AuthProvider extends ChangeNotifier {
       var token = response.data["access"];
       Client.dio.options.headers["Authorization"] = "Bearer $token";
 
-      username = username;
+      this.username = username;
       notifyListeners();
       var pref = await SharedPreferences.getInstance();
       await pref.setString("token", token);
-
+      notifyListeners();
       return true;
     } on DioError catch (e) {
       // e = exception (error)
@@ -55,11 +55,23 @@ class AuthProvider extends ChangeNotifier {
     return false;
   }
 
+  Future logout() async {
+    username = null;
+    var ref = await SharedPreferences.getInstance();
+    ref.remove("token");
+    Client.dio.options.headers["Authorization"] = null;
+    notifyListeners();
+  }
+
+  // bool get isSignedIn {
+  //   return username != null;
+  // }
+
   Future<bool> login(
       {required String username, required String password}) async {
     String token;
     try {
-      Response response = await Client.dio.post('api/login/', data: {
+      Response response = await Client.dio.post('/api/login/', data: {
         "username": username,
         "password": password,
       });
@@ -67,7 +79,7 @@ class AuthProvider extends ChangeNotifier {
       Client.dio.options.headers["Authorization"] = "Bearer $token";
       var ref = await SharedPreferences.getInstance();
       ref.setString("token", token);
-      username = username;
+      this.username = username;
       notifyListeners();
       return true;
     } on DioError catch (e) {
