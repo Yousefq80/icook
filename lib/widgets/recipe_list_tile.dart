@@ -45,7 +45,10 @@ class RecipeListTile extends StatelessWidget {
           child: CupertinoButton(
             onPressed: () {
               showCupertinoModalPopup(
-                  context: context, builder: (context) => RecipeDetail());
+                  context: context,
+                  builder: (context) => RecipeDetail(
+                        recipe: recipe,
+                      ));
             },
             child: Row(
               children: [

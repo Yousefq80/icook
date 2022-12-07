@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../models/recipes_model.dart';
+
 class RecipeDetail extends StatelessWidget {
-  const RecipeDetail({super.key});
+  const RecipeDetail({super.key, required this.recipe});
+  final Recipe recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -22,64 +25,91 @@ class RecipeDetail extends StatelessWidget {
           slivers: [
             SliverList(
               delegate: SliverChildListDelegate([
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 40),
-                    Text(
-                      'Recipe Title',
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .navLargeTitleTextStyle,
-                    ),
-                    Text(
-                      'By: Author Name',
-                      style: TextStyle(
-                        color: Colors.blueGrey.shade400,
-                        fontSize: 15,
+                SafeArea(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // SizedBox(height: 40),
+                      Text(
+                        recipe.title,
+                        style: CupertinoTheme.of(context)
+                            .textTheme
+                            .navLargeTitleTextStyle,
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      width: double.infinity,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                      SizedBox(height: 5),
+                      Text(
+                        "By: ${recipe.user}",
+                        style: TextStyle(
+                          color: Colors.blueGrey.shade400,
+                          fontSize: 20,
+                        ),
                       ),
-                      child: Image.network(
-                        'https://images.everydayhealth.com/images/diet-nutrition/34da4c4e-82c3-47d7-953d-121945eada1e00-giveitup-unhealthyfood.jpg?w=1110',
-                        fit: BoxFit.fitWidth,
+                      SizedBox(height: 15),
+                      Container(
+                        width: double.infinity,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.network(
+                          recipe.image,
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      "For over 200 years, we have been helping learners develop the skills and knowledge needed for their success. We are honored to be recognized as America's MOST trusted company in 2022 by Newsweek. ",
-                      style: TextStyle(
-                        color: Colors.blueGrey,
-                        fontSize: 20,
+                      SizedBox(height: 15),
+                      Text(
+                        recipe.description,
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      'Ingredients',
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .navTitleTextStyle
-                          .copyWith(
-                            fontSize: 25,
-                          ),
-                    ),
-                    SizedBox(height: 40),
-                    Center(
-                      child: CupertinoButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        color: Color.fromARGB(255, 187, 35, 24),
-                        child: Text('Go back'),
+                      SizedBox(height: 15),
+                      Text(
+                        "Ingredients",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 50, 67, 75),
+                          fontSize: 22,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 10),
+                      Text(
+                        recipe.ingredients,
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                        "Instructions",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 50, 67, 75),
+                          fontSize: 22,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        recipe.instructions,
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(height: 40),
+                      Center(
+                        child: CupertinoButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          color: Color.fromARGB(255, 187, 35, 24),
+                          child: Text('Go back'),
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ]),
             )
