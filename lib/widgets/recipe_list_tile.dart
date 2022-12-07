@@ -87,7 +87,7 @@ class RecipeListTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      recipe.user,
+                      "By: ${recipe.user}",
                       style: TextStyle(
                         color: Colors.blueGrey.shade300,
                         fontSize: 12,
