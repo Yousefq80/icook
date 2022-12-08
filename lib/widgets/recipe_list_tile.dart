@@ -77,7 +77,8 @@ class RecipeListTile extends StatelessWidget {
                         style: TextStyle(
                           color: Color.fromARGB(255, 187, 35, 24),
                           fontSize: 15,
-                          fontStyle: FontStyle.italic,
+                          // fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),

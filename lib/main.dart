@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:icook/pages/add_category.dart';
 import 'package:icook/pages/new_recipe_screen.dart';
 import 'package:icook/pages/search_page.dart';
 import 'package:icook/pages/signin.dart';
@@ -28,7 +29,7 @@ void main() async {
   ));
 }
 
-// // class SplashScreen extends StatelessWidget {
+// class SplashScreen extends StatelessWidget {
 //   const SplashScreen({super.key});
 
 //   @override
@@ -93,6 +94,10 @@ final router = GoRouter(
     GoRoute(
       path: '/search',
       builder: (context, state) => SearchPage(),
+    ),
+    GoRoute(
+      path: '/category',
+      builder: (context, state) => addCategory(),
     ),
     // GoRoute(
     //   path: '/edit',

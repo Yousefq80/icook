@@ -39,4 +39,17 @@ class CategoryProvider extends ChangeNotifier {
       print(e);
     }
   }
+
+  Future<void> addCategory({
+    required String title,
+    required File image,
+  }) async {
+    var response = await Client.dio.post("/api/createcategories/",
+        data: FormData.fromMap({
+          "title": title,
+          "image": await MultipartFile.fromFile(image.path),
+        }));
+
+    getCategory();
+  }
 }
