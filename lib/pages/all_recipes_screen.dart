@@ -62,19 +62,13 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                           content: Form(
                             child: Column(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Text("Don't have an account?"),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 4),
-                                  child: TextButton(
-                                    child: Text("Register"),
-                                    onPressed: () {
-                                      context.pop();
-                                      context.push("/signup");
-                                    },
-                                  ),
+                                Text("Don't have an account?"),
+                                TextButton(
+                                  child: Text("Register here"),
+                                  onPressed: () {
+                                    context.pop();
+                                    context.push("/signup");
+                                  },
                                 ),
                               ],
                             ),
@@ -146,6 +140,7 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                                 password = value!;
                               },
                             ),
+                            SizedBox(height: 25),
                             CupertinoDialogAction(
                               child: Text('Sign in'),
                               onPressed: () async {
@@ -153,13 +148,13 @@ class _AllRecipesScreenState extends State<AllRecipesScreen> {
                                     //!  To Work on
                                     username: usernameController.text,
                                     password: passwordController.text);
-                                Navigator.of(context).pop();
+                                context.pop();
                               },
                             ),
                             CupertinoDialogAction(
                               child: Text('Cancel'),
                               onPressed: () {
-                                Navigator.of(context).pop();
+                                context.pop();
                               },
                               isDestructiveAction: true,
                             ),

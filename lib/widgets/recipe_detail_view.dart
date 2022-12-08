@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../models/recipes_model.dart';
 
@@ -31,17 +32,27 @@ class RecipeDetail extends StatelessWidget {
                     children: [
                       // SizedBox(height: 40),
                       Text(
+                        recipe.category,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 187, 35, 24),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400
+                            // fontStyle: FontStyle.italic,
+                            ),
+                      ),
+                      // SizedBox(height: 15),
+                      Text(
                         recipe.title,
                         style: CupertinoTheme.of(context)
                             .textTheme
                             .navLargeTitleTextStyle,
                       ),
-                      SizedBox(height: 5),
+                      // SizedBox(height: 5),
                       Text(
                         "By: ${recipe.user}",
                         style: TextStyle(
                           color: Colors.blueGrey.shade400,
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                       ),
                       SizedBox(height: 15),
@@ -57,6 +68,15 @@ class RecipeDetail extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 15),
+                      Text(
+                        "Description",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 50, 67, 75),
+                          fontSize: 22,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      SizedBox(height: 10),
                       Text(
                         recipe.description,
                         style: TextStyle(
@@ -102,7 +122,7 @@ class RecipeDetail extends StatelessWidget {
                       Center(
                         child: CupertinoButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            context.pop();
                           },
                           color: Color.fromARGB(255, 187, 35, 24),
                           child: Text('Go back'),
