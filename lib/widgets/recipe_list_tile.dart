@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:icook/providers/recipes_provider.dart';
 import 'package:icook/widgets/new_form.dart';
 import 'package:icook/widgets/recipe_detail_view.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 
 import '../models/category_model.dart';
 import '../models/recipes_model.dart';
@@ -21,8 +23,10 @@ class RecipeListTile extends StatelessWidget {
             children: [
               SlidableAction(
                 label: 'Edit',
-                onPressed: ((context) {
-                  //*    <---------  EDIT RECIPE
+                onPressed: ((context) async {
+                  await context
+                      .read<RecipesProvider>()
+                      .editRecipe; //*    <---------  EDIT RECIPE
                 }),
                 backgroundColor: Colors.blue,
                 icon: Icons.edit,
@@ -34,8 +38,10 @@ class RecipeListTile extends StatelessWidget {
             children: [
               SlidableAction(
                 label: 'Delete',
-                onPressed: ((context) {
-                  //*    <---------  DELETE RECIPE
+                onPressed: ((context) async {
+                  await context
+                      .read<RecipesProvider>()
+                      .deleteRecipe; //*    <---------  DELETE RECIPE
                 }),
                 backgroundColor: Colors.red,
                 icon: Icons.delete,
