@@ -41,6 +41,12 @@ class RecipesProvider extends ChangeNotifier {
     }
   }
 
+  void deleteRecipe(int id) async {
+    await Client.dio.delete("/pets/$id");
+
+    getRecipes();
+  }
+
   // Future<void> addRecipe({
   //   required this.title,
   //   required this.name,
@@ -64,31 +70,31 @@ class RecipesProvider extends ChangeNotifier {
   //   getRecipes();
   // }
 
-  // Future<void> editRecipe({
-  //   required Recipe recipe,
-  //   required String title,
-  //   required String name,
-  //   required String category,
-  //   String? description,
-  //   required String ingredients,
-  //   required String instructions,
-  //   required String image,
-  // }) async {
-  //   var client = Dio();
+  Future<void> editRecipe({
+    required Recipe recipe,
+    required String title,
+    required String user,
+    required String category,
+    String? description,
+    required String ingredients,
+    required String instructions,
+    required String image,
+  }) async {
+    var client = Dio();
 
-  //   await client.put("/recipes/${recipe.id}",
-  //       data: FormData.fromMap({
-  //         "title": title,
-  //         "name": name,
-  //         "category": category,
-  //         "description": description,
-  //         "ingredients": ingredients,
-  //         "instructions": instructions,
-  //         "image": image,
-  //       }));
+    await client.put("/recipes/${recipe.id}",
+        data: FormData.fromMap({
+          "title": title,
+          "user": user,
+          "category": category,
+          "description": description,
+          "ingredients": ingredients,
+          "instructions": instructions,
+          "image": image,
+        }));
 
-  //   getRecipes();
-  // }
+    getRecipes();
+  }
 
   // void deleteRecipe(int id) async {
   //   await Client.dio.delete("/recipes/$id");
